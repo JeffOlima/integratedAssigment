@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt.br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"> 
+<title>CCT</title>
+<meta name="author" content="Jefferson Lima">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://kit.fontawesome.com/006642858d.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Header -->
+<header th:fragment="header">
+	
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4527A0">
+		<a class="navbar-brand" th:href="@{/}">
+			<img src="img/logo.png" width="70px"/>
+		</a>
+		
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMobile">
+				<span class="navbar-toggler-icon"></span>
+		</button>
+	
+		<div id="navMobile" class="navbar-collapse collapse justify-content-end">
+			<a class="btn-nav nav-item nav-link"><i class="fas fa-home"> Home</i></a>
+			<a class="btn-nav nav-item nav-link" th:href="@{registerStudents}"><i class="fas fa-user-graduate"> Register</i></a>
+			<a class="btn-nav nav-item nav-link"><i class="fas fa-search"> Search Student</i></a>
+			<a class="btn-nav nav-item nav-link"> DataSet</a>
+			<a class="btn-nav nav-item nav-link btn-danger"><i class="fas fa-times"> Exit</i></a>
+		</div>
+	</nav>
+	</header>
+	
+	<!-- Footer -->
+	
+	<footer th:fragment="footer">
+	<div class="footer">
+		<span>Copy Rights - 2020 &copy; J.D.B</span>
+	</div>
+	</footer>
+
+	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

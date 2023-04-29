@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt.br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"> 
+<title>CCT</title>
+<meta name="author" content="Jefferson Lima">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://kit.fontawesome.com/006642858d.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+	<div th:replace="fragments/fragments :: header"></div>`
+	
+	<div class="container" style="margin-top: 50px">
+	
+	<h3>Last students registered</h3>
+	<hr>
+	<table class="table table-bordere table-hover">
+	
+	<thead>
+		<th scope="col">Name</th>
+		<th scope="col">Surname</th>
+		<th scope="col">Student number</th>
+		<th scope="col">Email</th>
+		<th scope="col">Course</th>
+		<th scope="col">Action</th>
+	
+	</thead>
+	<tbody>
+		<tr scope="row" th:each="students : ${studentList}">
+		
+		<td th:text="${students.name}"></td>
+		<td th:text="${students.surname}"></td>
+		<td th:text="${students.studentNumber}"></td>
+		<td th:text="${students.email}"></td>
+		<td th:text="${students.course}"></td>
+		
+		
+		<td>
+		
+		<a class="btn btn-primary" th:href="@{edit/{id}(id=${students.id})}">
+		<i class="fas fa-edit"></i>Edit</a>
+		
+		<a class="btn btn-danger" th:href="@{delete/{id}(id=${students.id})}">
+		<i class="fas fa-times"></i>Delete</a>
+		
+		</td>
+	
+		</tr>
+		
+	</tbody>
+	
+	
+	</table>
+	
+	</div>
+
+	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

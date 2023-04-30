@@ -5,12 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.integratedAssessment.cct.Enums.Course;
+import com.integratedAssessment.cct.Enums.MusicalGenre;
 
 import javax.persistence.Column;
 
 @Entity
-public class Student {
+public class User {
 		
 		@Id
 		private String id;
@@ -18,12 +18,12 @@ public class Student {
 		private String name;
 		@Column(name = "surname")
 		private String surname;
-		@Column(name = "studentNumber")
-		private String studentNumber;
+		@Column(name = "userNumber")
+		private String userNumber;
 		@Column(name = "email")
 		private String email;
-		@Column(name = "course")
-		private String course;
+		@Column(name = "musicalGenre")
+		private MusicalGenre musicalGenre;
 		
 		
 		public String getId() {
@@ -44,11 +44,11 @@ public class Student {
 		public void setSurname(String surname) {
 			this.surname = surname;
 		}
-		public String getStudentNumber() {
-			return studentNumber;
+		public String getUserNumber() {
+			return userNumber;
 		}
-		public void setStudentNumber(String studentNumber) {
-			this.studentNumber = studentNumber;
+		public void setUserNumber(String userNumber) {
+			this.userNumber = userNumber;
 		}
 		public String getEmail() {
 			return email;
@@ -56,11 +56,11 @@ public class Student {
 		public void setEmail(String email) {
 			this.email = email;
 		}
-		public String getCourse() {
-			return course;
+		public MusicalGenre getMusicalGenre() {
+			return musicalGenre;
 		}
-		public void setCourse(String course) {
-			this.course = course;
+		public void setMusicalGenre(MusicalGenre musicalGenre) {
+			this.musicalGenre = musicalGenre;
 		}
 		
 		

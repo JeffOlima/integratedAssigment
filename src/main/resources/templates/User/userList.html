@@ -17,7 +17,7 @@
 	
 	<div class="container" style="margin-top: 50px">
 	
-	<h3>Last students registered</h3>
+	<h3>Last users registered</h3>
 	<hr>
 	<table class="table table-bordere table-hover">
 	
@@ -31,21 +31,21 @@
 	
 	</thead>
 	<tbody>
-		<tr scope="row" th:each="students : ${studentList}">
+		<tr scope="row" th:each="users : ${userList}">
 		
-		<td th:text="${students.name}"></td>
-		<td th:text="${students.surname}"></td>
-		<td th:text="${students.studentNumber}"></td>
-		<td th:text="${students.email}"></td>
-		<td th:text="${students.course}"></td>
+		<td th:text="${users.name}"></td>
+		<td th:text="${users.surname}"></td>
+		<td th:text="${users.userNumber}"></td>
+		<td th:text="${users.email}"></td>
+		<td th:text="${users.musicalGenre}"></td>
 		
 		
 		<td>
 		
-		<a class="btn btn-primary" th:href="@{edit/{id}(id=${students.id})}">
+		<a class="btn btn-primary" th:href="@{edit/{id}(id=${users.id})}">
 		<i class="fas fa-edit"></i>Edit</a>
 		
-		<a class="btn btn-danger" th:href="@{delete/{id}(id=${students.id})}">
+		<a class="btn btn-danger" th:href="@{delete/{id}(id=${users.id})}">
 		<i class="fas fa-times"></i>Delete</a>
 		
 		</td>

@@ -4,9 +4,9 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"> 
-<title>Register Student</title>
+<title>Edit Student</title>
 <meta name="author" content="Jefferson Lima">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 <script src="https://kit.fontawesome.com/006642858d.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
@@ -16,17 +16,17 @@
 
 <div class="container" style="margin-top:50px;">
 
-<h4>+ Register Student</h4>
+<h4>+ Edit User</h4>
 <hr>
 <br>
 
-<form method="post" action="/registerStudent" th:object="${student}">
-
+<form method="post" action="/edit" th:object="${user}">
+<input type="hidden" th:field="*{id}">
 
 <!-- Name  -->
  <div class="row">
  <div class="col-mod-6 form-group offset-md-3">
- <label>Student Name:</label>
+ <label>User Name:</label>
  <input class="form-control" placeholder="Ex: James" th:field="*{name}">
  </div>
 </div>
@@ -34,7 +34,7 @@
 <!-- Surname  -->
 <div class="row">
  <div class="col-mod-6 form-group offset-md-3">
- <label>Student Surname:</label>
+ <label>User Surname:</label>
  <input class="form-control" placeholder="Ex: Bond" th:field="*{surname}">
  </div>
 </div>
@@ -42,8 +42,8 @@
 <!-- Course  -->
 <div class="row">
  <div class="col-mod-6 form-group offset-md-3">
- <label>Student Number:</label>
- <input class="form-control" placeholder="Ex: James" th:field="*{studentNumber}">
+ <label>User Number:</label>
+ <input readonly="readonly" class="form-control" placeholder="Ex: James" th:field="*{userNumber}">
  </div>
 </div>
 
@@ -58,9 +58,9 @@
 <!-- Course  -->
 <div class="row">
  <div class="col-mod-6 form-group offset-md-3">
- <label>Course:</label>
- <select class="form-control" th:field="*{course}">
- <option th:each="course : ${T(com.integratedAssessment.cct.Enums.Course).values()}"th:value="${course}" th:text="${course}"></option>
+ <label>Musical Genre:</label>
+ <select class="form-control" th:field="*{musicalGenre}">
+ <option th:each="musicalGenre : ${T(com.integratedAssessment.cct.Enums.MusicalGenre).values()}"th:value="${musicalGenre}" th:text="${musicalGenre}"></option>
  </select>
  </div>
 </div>

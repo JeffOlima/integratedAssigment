@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.integratedAssessment.cct.model.User;
 import com.integratedAssessment.cct.repository.UserRepository;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class UserController {
@@ -36,13 +39,16 @@ public class UserController {
 
 
 	@PostMapping("/registerUsers")
-	public String registerUser(@ModelAttribute User user, Model model) {
+	public String registerUser(@ModelAttribute @Valid User user, BindingResult br) {
 	    String id = UUID.randomUUID().toString(); // create a unique String ID
-	    user.setId(id);
-	    User savedUser = userRepository.save(user);
-	    return "redirect:/registered-users";
+	    if(br.hasErrors()){
+	        return "User/formUser";
+	    } else {
+	        user.setId(id);
+	        User savedUser = userRepository.save(user);
+	        return "redirect:/registered-users";
+	    }
 	}
-	
 
 	@GetMapping("registered-users")
 	public ModelAndView listingUsers() {

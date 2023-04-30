@@ -24,8 +24,11 @@
 
 
 <!-- Name  -->
- <div class="row">
+ <div class="row">`
  <div class="col-mod-6 form-group offset-md-3">
+ <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('name')}">
+<label class="validation-message" th:errors="*{name}"></label>
+</div>
  <label>User Name:</label>
  <input class="form-control" placeholder="Ex: James" th:field="*{name}">
  </div>
@@ -34,6 +37,9 @@
 <!-- Surname  -->
 <div class="row">
  <div class="col-mod-6 form-group offset-md-3">
+ <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('surname')}">
+<label class="validation-message" th:errors="*{surname}"></label>
+</div>
  <label>User Surname:</label>
  <input class="form-control" placeholder="Ex: Bond" th:field="*{surname}">
  </div>
@@ -42,6 +48,9 @@
 <!-- Course  -->
 <div class="row">
  <div class="col-mod-6 form-group offset-md-3">
+ <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('userNumber')}">
+<label class="validation-message" th:errors="*{userNumber}"></label>
+</div>
  <label>User Number:</label>
  <input class="form-control" placeholder="Ex: James" th:field="*{userNumber}">
  </div>
@@ -50,6 +59,9 @@
 <!-- email  -->
 <div class="row">
  <div class="col-mod-6 form-group offset-md-3">
+ <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('email')}">
+<label class="validation-message" th:errors="*{email}"></label>
+</div>
  <label>Email:</label>
  <input class="form-control" placeholder="Ex: James" th:field="*{email}">
  </div>
@@ -58,9 +70,12 @@
 <!-- Course  -->
 <div class="row">
     <div class="col-mod-6 form-group offset-md-3">
+    <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('musicalGenre')}">
+<label class="validation-message" th:errors="*{musicalGenre}"></label>
+</div>
         <label>Musical Genre:</label>
         <select class="form-control" th:field="*{musicalGenre}">
-            <option th:each="genre : ${T(com.integratedAssessment.cct.Enums.MusicalGenre).values()}" th:value="${genre}" th:text="${genre}"></option>
+            <option th:each="musicalGenre : ${T(com.integratedAssessment.cct.Enums.MusicalGenre).values()}" th:value="${musicalGenre}" th:text="${musicalGenre}"></option>
         </select>
     </div>
 </div>

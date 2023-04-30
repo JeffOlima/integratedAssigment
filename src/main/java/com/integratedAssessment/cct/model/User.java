@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import com.integratedAssessment.cct.Enums.MusicalGenre;
 
@@ -15,13 +18,22 @@ public class User {
 		@Id
 		private String id;
 		@Column(name = "name")
+		@Size(min = 5, max = 20, message = "The name has to conten at least 5 characters")
+		@NotBlank(message ="the name can not be empty")
 		private String name;
-		@Column(name = "surname")
+		
+		@Column(name = "surname") 
+		@NotBlank(message ="the surname can not be empty")
 		private String surname;
+		
 		@Column(name = "userNumber")
 		private String userNumber;
+		
 		@Column(name = "email")
+		@NotBlank(message ="the email can not be empty")
+		@Email()
 		private String email;
+		
 		@Column(name = "musicalGenre")
 		private MusicalGenre musicalGenre;
 		

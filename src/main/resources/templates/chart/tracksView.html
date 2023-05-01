@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Track List</title>
+<!--  <link rel="stylesheet" href="/styles/tracksView.css">-->
+</head>
+<body>
+<h1>CHARTS</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Artist</th>
+    <th>Album</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="track : ${tracks}">
+    <td th:text="${track.getTrack_name()}"></td>
+    <td th:text="${track.getArtists()}"></td>
+    <td th:text="${track.getAlbum_name()}"></td>
+  </tr>
+  </tbody>
+</table>
+<!-- Display pagination links -->
+<div th:if="${hasMorePages}">
+  <a th:href="@{/tracks(page=0)}" th:if="${currentPage > 0}">&lt;&lt;</a>
+  <a th:href="@{/tracks(page=${currentPage-1})}" th:if="${currentPage > 0}">&lt;</a>
+  <span th:text="${currentPage+1}"></span>
+  <a th:href="@{/tracks(page=${currentPage+1})}" th:if="${hasMorePages}">&gt;</a>
+</div>
+</body>
+</html>

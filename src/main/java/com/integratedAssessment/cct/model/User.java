@@ -9,9 +9,11 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 import com.integratedAssessment.cct.Enums.MusicalGenre;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Column;
 
+@Document(collection = "users")
 @Entity
 public class User {
 		

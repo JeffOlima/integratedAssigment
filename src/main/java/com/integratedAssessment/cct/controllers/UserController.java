@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.integratedAssessment.cct.Enums.MusicalGenre;
 import com.integratedAssessment.cct.model.User;
 import com.integratedAssessment.cct.repository.UserRepository;
 
@@ -86,7 +87,53 @@ public class UserController {
 		return "redirect:/registered-users";
 	}
 	
-
+	@GetMapping("users-filter")
+	public ModelAndView usersFilter() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("User/usersFilter");
+		return mv;
+	}
+	
+	@GetMapping("users-rock")
+	public ModelAndView listingUsersRock() {
+	    ModelAndView mv = new ModelAndView();
+	    mv.setViewName("User/users-rock");
+	    mv.addObject("usersRock", userRepository.findByMusicalGenre(MusicalGenre.ROCK));
+	    return mv;
+	}
+	
+	@GetMapping("users-classic")
+	public ModelAndView listingUsersClassic() {
+	    ModelAndView mv = new ModelAndView();
+	    mv.setViewName("User/users-classic");
+	    mv.addObject("usersClassic", userRepository.findByMusicalGenre(MusicalGenre.CLASSIC));
+	    return mv;
+	}
+	
+	@GetMapping("users-pop")
+	public ModelAndView listingUsersPop() {
+	    ModelAndView mv = new ModelAndView();
+	    mv.setViewName("User/users-pop");
+	    mv.addObject("usersPop", userRepository.findByMusicalGenre(MusicalGenre.POP));
+	    return mv;
+	}
+	
+	@GetMapping("users-rap")
+	public ModelAndView listingUsersRap() {
+	    ModelAndView mv = new ModelAndView();
+	    mv.setViewName("User/users-rap");
+	    mv.addObject("usersRap", userRepository.findByMusicalGenre(MusicalGenre.RAP));
+	    return mv;
+	}
+	
+	@GetMapping("users-reggae")
+	public ModelAndView listingUsersReggae() {
+	    ModelAndView mv = new ModelAndView();
+	    mv.setViewName("User/users-reggae");
+	    mv.addObject("usersReggae", userRepository.findByMusicalGenre(MusicalGenre.REGGAE));
+	    return mv;
+	}
+	
 }
 	
 

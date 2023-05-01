@@ -13,6 +13,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Column;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 @Document(collection = "users")
 @Entity
 public class User {
@@ -20,7 +22,7 @@ public class User {
 		@Id
 		private String id;
 		@Column(name = "name")
-		@Size(min = 5, max = 20, message = "The name has to conten at least 5 characters")
+		@Size(max = 20, message = "The name has to conten at least 5 characters")
 		@NotBlank(message ="the name can not be empty")
 		private String name;
 		

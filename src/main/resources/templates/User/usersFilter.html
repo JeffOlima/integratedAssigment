@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt.br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"> 
+<title>Search Users</title>
+<meta name="author" content="Jefferson Lima">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://kit.fontawesome.com/006642858d.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="fragments/fragments :: header"></div>
+
+<div class="container" style="margin-top:50px;">
+
+<h4>+ Search Users</h4>
+<hr>
+<br>
+	
+	<form method="post">
+		
+		<div class="input-control col-6 offset-3">
+		
+		<input class="form-group" placeholder="Search for user's name">
+		<div class="input-group-append">
+		<button type="submit" class="btn btn-outline-secondary">Search</button>
+		</div>
+		
+		</div>
+	
+	</form>
+
+	<hr>
+	<div class="row">
+		<div class="card mt-3 ml-3" style="width:288px">
+			<a th:href="@{/users-rock}">
+			<img class="card-img-top" th:href="@{/users-rock}" src="img/Users-Rock.jpg">
+			</a>
+		<div class="card-body">
+			<h5 class="card-title">Users who likes Rock</h5>
+			<p class="card-text">Search for all user who has rock as preference.</p>
+			<a th:href="@{/users-rock}" class="btn btn-outline-primary">Click here!</a>
+		</div>
+		</div>
+	
+	<div class="card mt-3 ml-3" style="width:288px">
+			<a th:href="@{/users-classic}">
+			<img class="card-img-top" th:href="@{/users-classic}" src="img/Users-classic.jpg">
+			</a>
+		<div class="card-body">
+			<h5 class="card-title">Users who likes classic</h5>
+			<p class="card-text">Search for all user who has classic as preference.</p>
+			<a th:href="@{/users-classic}" class="btn btn-outline-primary">Click here!</a>
+		</div>
+		</div>
+		
+		<div class="card mt-3 ml-3" style="width:288px">
+			<a th:href="@{/users-pop}">
+			<img class="card-img-top" th:href="@{/users-pop}" src="img/Users-pop.jpg">
+			</a>
+		<div class="card-body">
+			<h5 class="card-title">Users who likes pop</h5>
+			<p class="card-text">Search for all user who has pop as preference.</p>
+			<a th:href="@{/users-pop}" class="btn btn-outline-primary">Click here!</a>
+		</div>
+		</div>
+		
+		<div class="card mt-3 ml-3" style="width:288px">
+			<a th:href="@{/users-rap}">
+			<img class="card-img-top" th:href="@{/users-rap}" src="img/Users-rap.jpg">
+			</a>
+		<div class="card-body">
+			<h5 class="card-title">Users who likes rap</h5>
+			<p class="card-text">Search for all user who has rap as preference.</p>
+			<a th:href="@{/users-rap}" class="btn btn-outline-primary">Click here!</a>
+		</div>
+		</div>
+		
+		<div class="card mt-3 ml-3" style="width:288px">
+			<a th:href="@{/users-reggae}">
+			<img class="card-img-top" th:href="@{/users-reggae}" src="img/Users-reggae.jpg">
+			</a>
+		<div class="card-body">
+			<h5 class="card-title">Users who likes reggae</h5>
+			<p class="card-text">Search for all user who has reggae as preference.</p>
+			<a th:href="@{/users-reggae}" class="btn btn-outline-primary">Click here!</a>
+		</div>
+		</div>
+
+</div>
+
+
+</body>
+</html>

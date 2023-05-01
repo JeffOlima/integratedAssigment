@@ -45,7 +45,7 @@ public class UserController {
 	        return "User/formUser";
 	    } else {
 	        user.setId(id);
-	        User savedUser = userRepository.save(user);
+	        User savedUser = userRepository.save(user );
 	        return "redirect:/registered-users";
 	    }
 	}

@@ -22,7 +22,7 @@ a.btn-nav:hover{color:#BA68C8;}
 	z-index:105;
 }
 .center-text{color:#fff; font-size:3em; font-family: 'ubuntu'; font-weight:bold;}
-.btn{width:280px; color:#fff; border-radius:10px; border:3px solid #a55eea; padding: 20px;}
+.btnmain{width:280px; color:#fff; border-radius:10px; border:3px solid #a55eea; padding: 20px;}
 .buttons{padding: 2% 15%;}
 .btn:hover{color:#CE93D8; background: rgba(0,0,0,0.5);}
 .footer{color:#fff; background-color:#4527A0; text-align:center; font-size:1.25em; padding: 15px}

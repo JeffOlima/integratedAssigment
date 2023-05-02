@@ -10,7 +10,7 @@ public class HomeController {
 	@GetMapping("/")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("home/index");
+		mv.setViewName("login/userLogin");
 		mv.addObject("msg", "Mensagem vinda diretamente do controller");
 		return mv;
 	}

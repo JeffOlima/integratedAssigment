@@ -22,20 +22,20 @@ public class User {
 		@Id
 		private String id;
 		@Column(name = "name")
-		@Size(max = 20, message = "The name has to conten at least 5 characters")
-		@NotBlank(message ="the name can not be empty")
+		@Size(min=5, max = 20, message = "The name field needs to contain at least 5 characters")
+		@NotBlank(message ="the name cannot be empty")
 		private String name;
 		
 		@Column(name = "surname") 
-		@NotBlank(message ="the surname can not be empty")
+		@NotBlank(message ="the surname field cannot be empty")
 		private String surname;
 		
 		@Column(name = "userNumber")
 		private String userNumber;
 		
 		@Column(name = "email")
-		@NotBlank(message ="the email can not be empty")
-		@Email()
+		@NotBlank(message ="the email cannot be empty")
+		@Email(message="You need to follow a valid email format")
 		private String email;
 		
 		@Column(name = "musicalGenre")

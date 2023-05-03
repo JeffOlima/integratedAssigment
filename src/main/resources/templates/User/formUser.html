@@ -48,11 +48,11 @@
 <!-- Course  -->
 <div class="row">
  <div class="col-mod-6 form-group offset-md-3">
- <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('userNumber')}">
-<label class="validation-message" th:errors="*{userNumber}"></label>
+ <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('password')}">
+<label class="validation-message" th:errors="*{password}"></label>
 </div>
- <label>User Number:</label>
- <input class="form-control" placeholder="Ex: UserID" th:field="*{userNumber}">
+ <label>Password:</label>
+ <input class="form-control" placeholder="Ex: UserID" th:field="*{password}">
  </div>
 </div>
 
@@ -83,7 +83,6 @@
 <!-- Buttons -->
 		<div class="row">
 		<button type="submit" class="btn btn-success offset-md-3">SAVE</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;
 		<a class="btn btn-outline-danger">BACK</a>
 		</div>
 

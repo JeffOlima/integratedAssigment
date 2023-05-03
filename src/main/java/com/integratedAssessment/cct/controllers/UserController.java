@@ -4,6 +4,7 @@ package com.integratedAssessment.cct.controllers;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.integratedAssessment.cct.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
@@ -26,10 +27,21 @@ public class UserController {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private UserService userService;
+
 	
 	@Autowired
 	private MongoTemplate mongoTemplate;
-	
+
+	@GetMapping("/")
+	public ModelAndView login() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("login/userLogin");
+		mv.addObject("user", new User());
+		return mv;
+	}
 	@GetMapping("/registerUsers")
 	public ModelAndView RegisterUsers(User user) {
 		ModelAndView mv = new ModelAndView();
@@ -40,14 +52,15 @@ public class UserController {
 
 
 	@PostMapping("/registerUsers")
-	public String registerUser(@ModelAttribute @Valid User user, BindingResult br) {
+	public String registerUser(@ModelAttribute @Valid User user, BindingResult br) throws Exception {
 	    String id = UUID.randomUUID().toString(); // create a unique String ID
 	    if(br.hasErrors()){
 	        return "User/formUser";
 	    } else {
 	        user.setId(id);
 	        User savedUser = userRepository.save(user );
-	        return "redirect:/registered-users";
+			//userService.saveUser(user);
+	        return "redirect:/home";
 	    }
 	}
 

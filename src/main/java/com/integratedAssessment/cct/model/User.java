@@ -1,8 +1,6 @@
 package com.integratedAssessment.cct.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Email;
@@ -13,8 +11,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Column;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
 @Document(collection = "users")
 @Entity
 public class User {
@@ -22,7 +18,7 @@ public class User {
 		@Id
 		private String id;
 		@Column(name = "name")
-		@Size(min=5, max = 20, message = "The name field needs to contain at least 5 characters")
+		@Size(min=3, max = 20, message = "The name field needs to contain at least 3 characters")
 		@NotBlank(message ="the name cannot be empty")
 		private String name;
 		
@@ -31,7 +27,7 @@ public class User {
 		private String surname;
 		
 		@Column(name = "userNumber")
-		private String userNumber;
+		private String password;
 		
 		@Column(name = "email")
 		@NotBlank(message ="the email cannot be empty")
@@ -60,11 +56,11 @@ public class User {
 		public void setSurname(String surname) {
 			this.surname = surname;
 		}
-		public String getUserNumber() {
-			return userNumber;
+		public String getPassword() {
+			return password;
 		}
-		public void setUserNumber(String userNumber) {
-			this.userNumber = userNumber;
+		public void setPassword(String userNumber) {
+			this.password = userNumber;
 		}
 		public String getEmail() {
 			return email;

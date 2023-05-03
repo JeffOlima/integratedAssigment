@@ -7,10 +7,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
-	@GetMapping("/")
+	@GetMapping("/home")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("login/userLogin");
+		mv.setViewName("home/index");
 		mv.addObject("msg", "Mensagem vinda diretamente do controller");
 		return mv;
 	}

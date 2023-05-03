@@ -5,6 +5,8 @@ import com.integratedAssessment.cct.repository.TrackRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,9 +25,9 @@ public class TrackService {
         //defined in the TrackRepository class
         return trackRepository.findAll();
     }
-
-    public List<Track> getTracksByPage(int offset, int limit) {
-        return trackRepository.findAll(PageRequest.of(offset, limit)).getContent();
+    // returns List<Track> sorted by the one of the field that we pass as a parameter
+    public List<Track> getSortedTracksBy_Popularity(int pageNumber, int limit, String field, Sort.Direction direction) {
+        return trackRepository.findAll(PageRequest.of(pageNumber, limit, Sort.by(direction, field))).getContent();
     }
 
 

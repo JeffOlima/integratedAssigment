@@ -1,10 +1,14 @@
 package com.integratedAssessment.cct.controllers;
 
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.integratedAssessment.cct.Exceptions.ServiceExc;
 import com.integratedAssessment.cct.services.UserService;
+import com.integratedAssessment.cct.util.Util;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
@@ -35,13 +39,44 @@ public class UserController {
 	@Autowired
 	private MongoTemplate mongoTemplate;
 
+
+
 	@GetMapping("/")
-	public ModelAndView login() {
+	public ModelAndView loginPage() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("login/userLogin");
 		mv.addObject("user", new User());
 		return mv;
 	}
+
+	@GetMapping("/home")
+	public ModelAndView index() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("home/index");
+		mv.addObject("msg", "Mensagem vinda diretamente do controller");
+		return mv;
+	}
+	@PostMapping("/")
+	public ModelAndView login(@Valid User user, BindingResult br, HttpSession session) throws NoSuchAlgorithmException, ServiceExc {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", new User());
+		if(br.hasErrors()){
+		mv.setViewName("login/UserLogin");
+		}
+		User userLogin = userService.loginUser(user.getEmail(), Util.md5(user.getPassword()));
+		if(userLogin==null){
+			mv.addObject("msg","User not found, try again");
+		}
+		else{
+			session.setAttribute("loggedUser", userLogin);
+			return index();
+		}
+		return mv;
+
+
+	}
+
+
 	@GetMapping("/registerUsers")
 	public ModelAndView RegisterUsers(User user) {
 		ModelAndView mv = new ModelAndView();
@@ -58,8 +93,8 @@ public class UserController {
 	        return "User/formUser";
 	    } else {
 	        user.setId(id);
-	        User savedUser = userRepository.save(user );
-			//userService.saveUser(user);
+	       // User savedUser = userRepository.save(user );
+			userService.saveUser(user);
 	        return "redirect:/home";
 	    }
 	}

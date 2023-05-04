@@ -19,12 +19,17 @@
                 <h2>Admin Login:</h2>
                 <p>Insert your credentials</p>
               </div>
-            <form method="post">
+            <form method="post" action="/" th:object="${user}">
+
+                <div class="alert alert-danger" role="alert" th:if="${msg}">
+                    <strong th:text="${msg}"></strong>
+                </div>
+
               <div class="form-group">
-                <input class="form-control" placeholder="Username">
+                <input type="text" th:field="*{email}" class="form-control" placeholder="Email">
               </div>
               <div class="form-group">
-                <input class="form-control" placeholder="Password">
+                <input type="password" th:field="*{password}" class="form-control" placeholder="Password">
               </div>
               <div class="sign-up">
                 <a  th:href="@{/registerUsers}">Not Registerd yet? Click Here</a>

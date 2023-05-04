@@ -17,24 +17,22 @@ public class TrackController {
     @Autowired
     private TrackService trackService;
 
+
     @GetMapping()
-    public ModelAndView getTrackView(@RequestParam(defaultValue = "0") int page,
-                                     @RequestParam(required = false, defaultValue = "popularity")String sortField) {
+    public ModelAndView getTrackView(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "popularity") String sortField) {
         ModelAndView mav = new ModelAndView("chart/tracksView");
-        int pageSize = 25;
-        int track_place = 0;
+        int pageSize = 100;
         int offset = page * pageSize;
-        List<Track> tracks = trackService.getSortedTracksBy_Popularity(offset, pageSize, sortField, Sort.Direction.DESC);
+        List<Track> tracks = trackService.getSortedTrackListBy_Param(offset, pageSize, sortField, Sort.Direction.DESC);
         mav.addObject("tracks", tracks);
         mav.addObject("currentPage", page);
         mav.addObject("hasMorePages", !tracks.isEmpty());
-        mav.addObject("track_place", track_place);
         mav.addObject("sortField", sortField);
-        mav.addObject("danceabilitySort", "danceability".equals(sortField)); // add this line
-        mav.addObject("popularitySort", "popularity".equals(sortField)); // add this line
+
         return mav;
     }
-
 
     @GetMapping("/{id}")
     public ModelAndView getOneSong(@PathVariable ObjectId id) {

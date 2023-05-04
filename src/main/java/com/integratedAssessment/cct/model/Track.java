@@ -8,8 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "songs")
-@Data
 //@Data takes care of getters/setters and toString() methods
+@Data
 // annotation for creating our constructor that takes all fields ass arguments
 @AllArgsConstructor
 //this annotation is for creating constructor without args

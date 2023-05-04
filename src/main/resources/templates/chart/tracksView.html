@@ -6,34 +6,24 @@
 </head>
 <body>
 <div class="charts header">
-    <h1>CHARTS</h1>
-</div>
-<div>
-    <form th:action="@{/tracks}" method="get">
-        <label for="sort-dropdown">Sort by:</label>
-        <select name="sortField" id="sort-dropdown">
-            <option value="danceability" th:selected="${danceabilitySort}">Danceability</option>
-            <option value="popularity" th:selected="${popularitySort}">Popularity</option>
-        </select>
-        <button type="submit">Sort</button>
-    </form>
+    <h1>HOT 100</h1>
 </div>
 <table>
     <thead>
     <tr>
         <th>#</th>
-        <th>Title</th>
-        <th>Artist</th>
-        <th>Album</th>
-        <th>Popularity</th>
-        <th>Danceability</th>
+        <th><a th:href="@{/tracks(sortField='track_name')}">Title</a></th>
+        <th><a th:href="@{/tracks(sortField='artists')}">Artist</a></th>
+        <th><a th:href="@{/tracks(sortField='album_name')}">Album</a></th>
+        <th><a th:href="@{/tracks(sortField='popularity')}">Popularity</a></th>
+        <th><a th:href="@{/tracks(sortField='danceability')}">Danceability</a></th>
         <th>Add</th>
     </tr>
     </thead>
     <tbody>
 
     <tr class="charts-row" th:each="track, trackNumber : ${tracks}">
-        <td th:text="${trackNumber.index+1}"></td>
+        <td th:text="${trackNumber.index+1 }"></td>
         <td th:text="${track.getTrack_name()}"></td>
         <td th:text="${track.getArtists()}"></td>
         <td th:text="${track.getAlbum_name()}"></td>
@@ -44,20 +34,13 @@
 
     </tbody>
 </table>
-<!--&lt;!&ndash; Display pagination links &ndash;&gt;-->
-<!--<div th:if="${hasMorePages}">-->
-<!--    <a th:href="@{/tracks(page=0)}" th:if="${currentPage > 0}">&lt;&lt;</a>-->
-<!--    <a th:href="@{/tracks(page=${currentPage - 1})}" th:if="${currentPage > 0}">&lt;</a>-->
-<!--    <span th:text="${currentPage+1}"></span>-->
-<!--    <a th:href="@{/tracks(page=${currentPage+1})}" th:if="${hasMorePages}">&gt;</a>-->
-<!--</div>-->
 
 <!-- Display pagination links -->
 <div th:if="${hasMorePages}">
-    <a th:href="@{/tracks(page=0)}" th:if="${currentPage > 0}">&lt;&lt;</a>
-    <a th:href="@{/tracks(page=${currentPage - 1})}" th:if="${currentPage > 0}">&lt;</a>
+    <a th:href="@{/tracks(page=0, sortField=${sortField})}" th:if="${currentPage > 0}">&lt;&lt;</a>
+    <a th:href="@{/tracks(page=${currentPage - 1}, sortField=${sortField})}" th:if="${currentPage > 0}">&lt;</a>
     <span th:text="${currentPage+1}"></span>
-    <a th:href="@{/tracks(page=${currentPage+1})}" th:if="${hasMorePages}">&gt;</a>
+    <a th:href="@{/tracks(page=${currentPage+1}, sortField=${sortField})}" th:if="${hasMorePages}">&gt;</a>
 </div>
 </body>
 </html>

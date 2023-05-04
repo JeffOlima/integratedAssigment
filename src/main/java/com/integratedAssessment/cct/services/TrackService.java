@@ -6,7 +6,6 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +25,8 @@ public class TrackService {
         return trackRepository.findAll();
     }
     // returns List<Track> sorted by the one of the field that we pass as a parameter
-    public List<Track> getSortedTracksBy_Popularity(int pageNumber, int limit, String field, Sort.Direction direction) {
-        return trackRepository.findAll(PageRequest.of(pageNumber, limit, Sort.by(direction, field))).getContent();
+    public List<Track> getSortedTrackListBy_Param(int offset, int limit, String field, Sort.Direction direction) {
+        return trackRepository.findAll(PageRequest.of(offset, limit, Sort.by(direction, field))).getContent();
     }
 
 

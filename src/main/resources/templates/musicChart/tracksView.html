@@ -17,6 +17,7 @@
         <th><a th:href="@{/tracks(sortField='album_name')}">Album</a></th>
         <th><a th:href="@{/tracks(sortField='popularity')}">Popularity</a></th>
         <th><a th:href="@{/tracks(sortField='danceability')}">Danceability</a></th>
+        <th>Action</th>
         <th>Add</th>
     </tr>
     </thead>
@@ -29,6 +30,16 @@
         <td th:text="${track.getAlbum_name()}"></td>
         <td th:text="${track.getPopularity()}"></td>
         <td th:text="${track.getDanceability()}"></td>
+        <td>
+            <a class="btn btn-primary" th:href="@{tracks/edit/{id}(id=${track.id})}">
+                <i class="fas fa-edit"></i>Edit</a>
+<!--            <a class="btn btn-danger" th:href="@{tracks/delete/{id}(id=${track.id}, page=${currentPage}, sortField=${sortField})}">-->
+<!--                <i class="fas fa-times"></i>Delete</a>-->
+            <form th:method="DELETE" th:action="@{tracks/{id}(id=${track.id}, page=${currentPage}, sortField=${sortField})}">
+                <input type="submit" value="Delete" />
+            </form>
+
+        </td>
         <td><button>+</button></td>
     </tr>
 

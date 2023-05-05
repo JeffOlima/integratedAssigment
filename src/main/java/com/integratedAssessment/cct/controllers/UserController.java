@@ -75,6 +75,11 @@ public class UserController {
 
 
 	}
+	@PostMapping("/logout")
+	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		return loginPage();
+	}
 
 
 	@GetMapping("/registerUsers")
@@ -99,7 +104,7 @@ public class UserController {
 	    }
 	}
 
-	@GetMapping("registered-users")
+	@GetMapping("/registered-users")
 	public ModelAndView listingUsers() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("User/userList");
@@ -181,6 +186,7 @@ public class UserController {
 	    mv.addObject("usersReggae", userRepository.findByMusicalGenre(MusicalGenre.REGGAE));
 	    return mv;
 	}
+
 	
 }
 	

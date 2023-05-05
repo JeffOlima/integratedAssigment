@@ -3,6 +3,9 @@
 <head>
     <title>Track List</title>
     <link rel="stylesheet" href="/css/tracksView.css">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/006642858d.js"></script>
 </head>
 <body>
 <div style="margin: 0; text-align: center" class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -11,6 +14,11 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
+<!--Header-->
+<div th:replace="fragments/fragments :: header"></div>`
+
+<div class="container" style="margin-top: 50px">
+<!-- Body-->
 <div class="charts header">
     <h1>HOT 100</h1>
 </div>
@@ -41,8 +49,8 @@
                 <i class="fas fa-edit"></i>Edit</a>
 <!--            <a class="btn btn-danger" th:href="@{tracks/delete/{id}(id=${track.id}, page=${currentPage}, sortField=${sortField})}">-->
 <!--                <i class="fas fa-times"></i>Delete</a>-->
-            <form th:method="DELETE" th:action="@{tracks/{id}(id=${track.id}, page=${currentPage}, sortField=${sortField})}">
-                <input type="submit" value="Delete" />
+            <form class="btn btn-danger" th:method="DELETE" th:action="@{tracks/{id}(id=${track.id}, page=${currentPage}, sortField=${sortField})}">
+                <input class="fas fa-times" type="submit" value="Delete" />
             </form>
 
         </td>

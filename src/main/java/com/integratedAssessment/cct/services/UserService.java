@@ -27,6 +27,7 @@ public class UserService {
         }
         userRepository.save(user);
     }
+
         public User loginUser(String email, String password) throws ServiceExc {
 
             User userLogin= userRepository.searchByEmailAndPassword(email, password);

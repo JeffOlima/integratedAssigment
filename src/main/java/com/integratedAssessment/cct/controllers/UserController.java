@@ -2,9 +2,12 @@ package com.integratedAssessment.cct.controllers;
 
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.integratedAssessment.cct.Exceptions.CritograpyException;
+import com.integratedAssessment.cct.Exceptions.EmailExistsException;
 import com.integratedAssessment.cct.Exceptions.ServiceExc;
 import com.integratedAssessment.cct.services.UserService;
 import com.integratedAssessment.cct.util.Util;
@@ -14,10 +17,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.integratedAssessment.cct.Enums.MusicalGenre;
@@ -53,7 +53,7 @@ public class UserController {
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("home/index");
-		mv.addObject("msg", "Mensagem vinda diretamente do controller");
+		mv.addObject("user", new User());
 		return mv;
 	}
 	@PostMapping("/")
@@ -72,13 +72,54 @@ public class UserController {
 			return index();
 		}
 		return mv;
-
-
+	}
+	@PostMapping("/registerUsersFromLogin")public String registerUserFromLogin(@ModelAttribute @Valid User user, BindingResult br, Model model) {
+		try {
+			if (br.hasErrors()) {
+				return "login/formNewUser";
+			} else {
+				String id = UUID.randomUUID().toString(); // create a unique String ID
+				user.setId(id);
+				userService.saveUser(user);
+				return "redirect:/";
+			}
+		} catch (EmailExistsException e) {
+			model.addAttribute("msg", e.getMessage());
+			return "login/formNewUser";
+		} catch (Exception e) {
+			model.addAttribute("msg", "An unexpected error occurred.");
+			return "login/formNewUser";
+		}
 	}
 	@PostMapping("/logout")
 	public ModelAndView logout(HttpSession session) {
 		session.invalidate();
 		return loginPage();
+	}
+@PostMapping("/userSearch")
+public ModelAndView userSearch(@RequestParam(required = false)String name){
+		ModelAndView mv =new ModelAndView();
+		List<User> userList;
+		if(name==null || name.trim().isEmpty()){
+			userList = userRepository.findAll();
+		}else {
+			userList=userRepository.searchByNameContainingIgnoreCase(name);
+		}
+		mv.addObject("UserList", userList);
+		mv.setViewName("User/searchResult");
+		return mv;
+}
+
+
+
+
+
+	@GetMapping("/registerUsersFromLogin")
+	public ModelAndView RegisterUsersFromLogin(User user) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("login/formNewUser");
+		mv.addObject("user", new User());
+		return mv;
 	}
 
 
@@ -92,16 +133,23 @@ public class UserController {
 
 
 	@PostMapping("/registerUsers")
-	public String registerUser(@ModelAttribute @Valid User user, BindingResult br) throws Exception {
-	    String id = UUID.randomUUID().toString(); // create a unique String ID
-	    if(br.hasErrors()){
-	        return "User/formUser";
-	    } else {
-	        user.setId(id);
-	       // User savedUser = userRepository.save(user );
-			userService.saveUser(user);
-	        return "redirect:/home";
-	    }
+	public String registerUser(@ModelAttribute @Valid User user, BindingResult br, Model model) {
+		try {
+			if (br.hasErrors()) {
+				return "login/formUser";
+			} else {
+				String id = UUID.randomUUID().toString(); // create a unique String ID
+				user.setId(id);
+				userService.saveUser(user);
+				return "redirect:/";
+			}
+		} catch (EmailExistsException e) {
+			model.addAttribute("msg", e.getMessage());
+			return "login/formNewUser";
+		} catch (Exception e) {
+			model.addAttribute("msg", "An unexpected error occurred.");
+			return "login/formNewUser";
+		}
 	}
 
 	@GetMapping("/registered-users")
@@ -143,6 +191,7 @@ public class UserController {
 	@GetMapping("users-filter")
 	public ModelAndView usersFilter() {
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", new User());
 		mv.setViewName("User/usersFilter");
 		return mv;
 	}

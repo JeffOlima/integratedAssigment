@@ -11,6 +11,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
+<div style="margin: 0; text-align: center" class="alert alert-warning alert-dismissible fade show" role="alert">
+	<strong>Hello <span th:text="${session.loggedUser.getName()}">!</span></strong> Here you can filter users based on their favorite music genre.
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
 
 <div th:replace="fragments/fragments :: header"></div>
 

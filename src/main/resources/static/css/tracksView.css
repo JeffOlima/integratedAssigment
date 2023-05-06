@@ -17,6 +17,7 @@ body {
     line-height: 1.45;
     text-size-adjust: 100%;
 }
+/*scroling */
 .charts-row{
     overflow: hidden;
 }
@@ -26,9 +27,29 @@ body {
 td{
     border-radius: 0;
 }
+/*table*/
+table{
+    width: 100%;
+}
+
 
 /*select*/
 select {
     margin-bottom: 10px;
     margin-top: 10px;
+}
+
+/*add to the playlist btn*/
+.btn-addTrack{
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.67em 0.67em;
+    cursor: pointer;
+}
+.btn-addTrack-toUserPLaylist{
+    color: white;
+    background-color: #56CCF2;
+    border: none;
+    border-radius: 0.3em;
+    font-weight: bold;
 }

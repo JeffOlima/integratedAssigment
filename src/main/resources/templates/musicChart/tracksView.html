@@ -22,17 +22,18 @@
 <div class="charts header">
     <h1>HOT 100</h1>
 </div>
-<table>
+    <hr>
+<table class="table table-bordere table-hover">
     <thead>
     <tr>
         <th>#</th>
-        <th><a th:href="@{/tracks(sortField='track_name')}">Title</a></th>
-        <th><a th:href="@{/tracks(sortField='artists')}">Artist</a></th>
-        <th><a th:href="@{/tracks(sortField='album_name')}">Album</a></th>
-        <th><a th:href="@{/tracks(sortField='popularity')}">Popularity</a></th>
-        <th><a th:href="@{/tracks(sortField='danceability')}">Danceability</a></th>
-        <th>Action</th>
-        <th>Add</th>
+        <th scope="col"><a th:href="@{/tracks(sortField='track_name')}">Title</a></th>
+        <th scope="col"><a th:href="@{/tracks(sortField='artists')}">Artist</a></th>
+        <th scope="col"><a th:href="@{/tracks(sortField='album_name')}">Album</a></th>
+        <th scope="col"><a th:href="@{/tracks(sortField='popularity')}">Popularity</a></th>
+        <th scope="col"><a th:href="@{/tracks(sortField='danceability')}">Danceability</a></th>
+        <th scope="col">Action</th>
+        <th scope="col">Add to PLaylist</th>
     </tr>
     </thead>
     <tbody>
@@ -45,7 +46,7 @@
         <td th:text="${track.getPopularity()}"></td>
         <td th:text="${track.getDanceability()}"></td>
         <td>
-            <a class="btn btn-primary" th:href="@{tracks/edit/{id}(id=${track.id})}">
+            <a class="btn btn-primary" th:href="@{tracks/edit/{id}(id=${track.id}, page=${currentPage}, sortField=${sortField})}">
                 <i class="fas fa-edit"></i>Edit</a>
 <!--            <a class="btn btn-danger" th:href="@{tracks/delete/{id}(id=${track.id}, page=${currentPage}, sortField=${sortField})}">-->
 <!--                <i class="fas fa-times"></i>Delete</a>-->
@@ -54,7 +55,10 @@
             </form>
 
         </td>
-        <td><button>+</button></td>
+        <td>
+            <a class="btn btn-primary">
+                <i ></i>Add</a>
+        </td>
     </tr>
 
     </tbody>
@@ -64,8 +68,9 @@
 <div th:if="${hasMorePages}">
     <a th:href="@{/tracks(page=0, sortField=${sortField})}" th:if="${currentPage > 0}">&lt;&lt;</a>
     <a th:href="@{/tracks(page=${currentPage - 1}, sortField=${sortField})}" th:if="${currentPage > 0}">&lt;</a>
-    <span th:text="${currentPage+1}"></span>
+    <span th:text="${currentPage}"></span>
     <a th:href="@{/tracks(page=${currentPage+1}, sortField=${sortField})}" th:if="${hasMorePages}">&gt;</a>
+</div>
 </div>
 </body>
 </html>

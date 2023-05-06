@@ -25,7 +25,10 @@ public class TrackService {
         Optional<Track> foundTrack = trackRepository.findById(id);
         return foundTrack.orElse(null);
     }
-
+    //Saves ne
+    public void saveUpdatedTrack(Track track) {
+        trackRepository.save(track);
+    }
     public void deleteTrack(ObjectId id) {
         trackRepository.deleteById(id);
     }

@@ -46,14 +46,31 @@ public class TrackController {
     //UPDATE
     @GetMapping("/edit/{id}")
     public ModelAndView getOneSong(
-            @PathVariable ObjectId id) {
+            @PathVariable ObjectId id,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "track_name") String sortField) {
         ModelAndView mav = new ModelAndView("musicChart/editTrack");
         Track foundTrack = trackService.findOne(id);
         if (foundTrack != null) {
             mav.addObject("track", foundTrack);
+            mav.addObject("page", page);
+            mav.addObject("sortField", sortField);
         } else {
-            System.out.println("Error !!!");
+            System.out.println("Error !!! @GETMAPPING (/edit/{id}) in TrackController Class");
         }
+        return mav;
+    }
+
+    @PostMapping("/editTrack")
+    public ModelAndView editTrack(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "track_name") String sortField,
+            Track track)  {
+        trackService.saveUpdatedTrack(track);
+
+        ModelAndView mav = new ModelAndView("redirect:/tracks");
+        mav.addObject("page", page);
+        mav.addObject("sortField", sortField);
         return mav;
     }
     //DELETE

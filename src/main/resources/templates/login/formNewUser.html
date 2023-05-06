@@ -39,11 +39,11 @@
 <!-- Surname  -->
 <div class="row">
  <div class="col-mod-6 form-group offset-md-3">
- <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('surname')}">
-<label class="validation-message" th:errors="*{surname}"></label>
+ <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('username')}">
+<label class="validation-message" th:errors="*{username}"></label>
 </div>
- <label>User Surname:</label>
- <input class="form-control" placeholder="Ex: Bond" th:field="*{surname}">
+ <label>User Username:</label>
+ <input class="form-control" placeholder="Ex: Bond" th:field="*{username}">
  </div>
 </div>
 

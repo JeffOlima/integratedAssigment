@@ -19,7 +19,9 @@ public class UserService {
     public void saveUser (User user) throws Exception {
         try {
             if (userRepository.findByEmail(user.getEmail()) != null) {
-                throw new EmailExistsException("Email already registered on our database: " + user.getEmail());
+                throw new EmailExistsException("Email already registered on our database: " + user.getEmail());}
+            if (userRepository.findByUsername(user.getUsername()) != null) {
+                throw new EmailExistsException("Username already registered on our database: " + user.getUsername());
             }
             user.setPassword(Util.md5(user.getPassword()));
         } catch (NoSuchAlgorithmException e) {
@@ -28,9 +30,10 @@ public class UserService {
         userRepository.save(user);
     }
 
-        public User loginUser(String email, String password) throws ServiceExc {
+        public User loginUser(String username, String password) throws ServiceExc {
 
-            User userLogin= userRepository.searchByEmailAndPassword(email, password);
+            //User userLogin= userRepository.searchByEmailAndPassword(email, password);
+            User userLogin= userRepository.searchByUsernameAndPassword(username , password);
             return userLogin;
         }
 

@@ -141,14 +141,14 @@ public ModelAndView userSearch(@RequestParam(required = false)String name){
 				String id = UUID.randomUUID().toString(); // create a unique String ID
 				user.setId(id);
 				userService.saveUser(user);
-				return "redirect:/";
+				return "redirect:/home";
 			}
 		} catch (EmailExistsException e) {
 			model.addAttribute("msg", e.getMessage());
-			return "login/formNewUser";
+			return "User/formUser";
 		} catch (Exception e) {
 			model.addAttribute("msg", "An unexpected error occurred.");
-			return "login/formNewUser";
+			return "User/formUser";
 		}
 	}
 

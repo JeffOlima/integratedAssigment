@@ -24,7 +24,7 @@ public class User {
 		
 		@Column(name = "surname") 
 		@NotBlank(message ="the surname field cannot be empty")
-		private String surname;
+		private String username;
 		
 		@Column(name = "userNumber")
 		private String password;
@@ -50,11 +50,11 @@ public class User {
 		public void setName(String name) {
 			this.name = name;
 		}
-		public String getSurname() {
-			return surname;
+		public String getUsername() {
+			return username;
 		}
-		public void setSurname(String surname) {
-			this.surname = surname;
+		public void setUsername(String surname) {
+			this.username = surname;
 		}
 		public String getPassword() {
 			return password;

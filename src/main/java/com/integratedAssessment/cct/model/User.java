@@ -10,6 +10,7 @@ import com.integratedAssessment.cct.Enums.MusicalGenre;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Column;
+import java.util.List;
 
 @Document(collection = "users")
 @Entity
@@ -36,8 +37,7 @@ public class User {
 		
 		@Column(name = "musicalGenre")
 		private MusicalGenre musicalGenre;
-		
-		
+
 		public String getId() {
 			return id;
 		}
